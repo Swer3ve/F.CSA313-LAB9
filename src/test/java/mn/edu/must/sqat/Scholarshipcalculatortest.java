@@ -128,4 +128,39 @@ class ScholarshipCalculatorTest {
     void gpaManyGrades() { // loop runs 2+ times: (4+3+2+1)/4
         assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 1e-9);
     }
+        // ---- Part D: boundary values (spec: 60-69.99 is D) ----
+    @Test
+    void letterGradeBoundary0() {
+        assertEquals("F", calc.letterGrade(0));
+    }
+
+    @Test
+    void letterGradeBoundary59_99() {
+        assertEquals("F", calc.letterGrade(59.99));
+    }
+
+    @Test
+    void letterGradeBoundary60() {
+        assertEquals("D", calc.letterGrade(60));
+    }
+
+    @Test
+    void letterGradeBoundary69_99() {
+        assertEquals("D", calc.letterGrade(69.99));
+    }
+
+    @Test
+    void letterGradeBoundary89_99() {
+        assertEquals("B", calc.letterGrade(89.99));
+    }
+
+    @Test
+    void letterGradeBoundary90() {
+        assertEquals("A", calc.letterGrade(90));
+    }
+
+    @Test
+    void letterGradeBoundary100() {
+        assertEquals("A", calc.letterGrade(100));
+    }
 }
