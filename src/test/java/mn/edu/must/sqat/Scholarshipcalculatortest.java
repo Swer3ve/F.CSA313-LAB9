@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+
 class ScholarshipCalculatorTest {
 
     private final ScholarshipCalculator calc = new ScholarshipCalculator();
@@ -116,5 +117,15 @@ class ScholarshipCalculatorTest {
     @Test
     void scholarshipLowGpaZero() {
         assertEquals(0, calc.scholarship(2.5, 16, false));
+    }
+        // ---- Part C: loop boundary (0 / 1 / 2+) ----
+    @Test
+    void gpaSingleGrade() { // loop runs once
+        assertEquals(4.0, calc.gpa(new double[]{95}), 1e-9);
+    }
+
+    @Test
+    void gpaManyGrades() { // loop runs 2+ times: (4+3+2+1)/4
+        assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 1e-9);
     }
 }
